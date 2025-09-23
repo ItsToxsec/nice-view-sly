@@ -2,19 +2,19 @@
 #include <zephyr/kernel.h>
 #include "animation.h"
 
-LV_IMG_DECLARE(Sly);
+LV_IMG_DECLARE(sly);
 
 const lv_img_dsc_t *anim_imgs[] = {
-    &Sly,
+    &sly,
 };
 
 void draw_animation(lv_obj_t *canvas) {
-#if IS_ENABLED(CONFIG_NICE_VIEW_Sly_ANIMATION)
+#if IS_ENABLED(CONFIG_NICE_VIEW_SLY_ANIMATION)
     lv_obj_t *art = lv_animimg_create(canvas);
     lv_obj_center(art);
 
     lv_animimg_set_src(art, (const void **)anim_imgs, 16);
-    lv_animimg_set_duration(art, CONFIG_NICE_VIEW_Sly_ANIMATION_MS);
+    lv_animimg_set_duration(art, CONFIG_NICE_VIEW_SLY_ANIMATION_MS);
     lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
     lv_animimg_start(art);
 #else
@@ -24,7 +24,7 @@ void draw_animation(lv_obj_t *canvas) {
     srand(k_uptime_get_32());
     int random_index = rand() % length;
 
-    lv_img_set_src(art, &Sly);
+    lv_img_set_src(art, &sly);
 #endif
 
     lv_obj_align(art, LV_ALIGN_TOP_LEFT, 36, 0);
